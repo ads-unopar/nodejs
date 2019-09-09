@@ -1,12 +1,13 @@
-const express = require('express');
-const app = express();         
+const express = require('express');        
 const bodyParser = require('body-parser');
-const port = 3000; //porta padrão
 const mysql = require('mysql');
 
+const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Conexão ao Banco de Dados e recuperação das informações 
+// para disponibilizar via JSON
 function execSQLQuery(sqlQry, res){
   const connection = mysql.createConnection({
     host: 'localhost',
@@ -41,5 +42,5 @@ router.get('/clientes/:id?', (req, res) =>{
 });
 
 //inicia o servidor
-app.listen(port);
+app.listen(3000);
 console.log('API funcionando!');
